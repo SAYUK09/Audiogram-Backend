@@ -2,18 +2,15 @@ const express = require("express");
 const cors = require("cors");
 const bodyParser = require("body-parser");
 const {renderRemotionVideo} = require("./controller/remotion-server");
+const {uploadVideoToCloudinary} = require("./utility");
+const cloudinary = require("cloudinary").v2;
 
 const app = express();
 app.use(bodyParser.json());
 app.use(cors());
 
-app.get("/", (req, res) => {
+app.get("/", async (req, res) => {
   res.send("I am On!");
-});
-
-app.post("/render", (req, res) => {
-  console.log(req.body); // prints the request body to console
-  res.send("Data received!"); // sends a response to the client
 });
 
 app.post("/render-video", async (req, res) => {
@@ -23,7 +20,10 @@ app.post("/render-video", async (req, res) => {
 
   try {
     await renderRemotionVideo(compositionId, inputProps, outputLocation);
-    res.status(200).json({data: "Video rendered successfully"});
+
+    const data = await uploadVideoToCloudinary("./out/Audiogram.mp4");
+
+    res.status(200).json({data});
   } catch (error) {
     console.error(error);
     res.status(500).send("Error rendering video");

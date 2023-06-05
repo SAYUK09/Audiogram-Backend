@@ -12,7 +12,9 @@
   "dependencies": {
     "@remotion/bundler": "^3.3.87",
     "@remotion/renderer": "^3.3.87",
+    "cloudinary": "^1.37.0",
     "cors": "^2.8.5",
+    "dotenv": "^16.1.4",
     "express": "^4.18.2",
     "nodemon": "^2.0.22"
   }

@@ -9,7 +9,6 @@ async function renderRemotionVideo(
   webpackOverride
 ) {
   const entry = path.resolve(__dirname, "../../audiogram/remotion/index.tsx");
-  console.log(outputLocation, "popop");
   console.log("Creating a Webpack bundle of the video");
   const bundleLocation = await bundle(entry, webpackOverride);
 
