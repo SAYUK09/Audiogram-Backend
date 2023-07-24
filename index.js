@@ -16,12 +16,12 @@ app.get("/", async (req, res) => {
 app.post("/render-video", async (req, res) => {
   const {inputProps} = req.body;
   const compositionId = "Audiogram";
-  const outputLocation = `out/${compositionId}.mp4`;
+  const outputLocation = `./out/${req.body.fileName}.mp4`;
 
   try {
     await renderRemotionVideo(compositionId, inputProps, outputLocation);
 
-    const data = await uploadVideoToCloudinary("./out/Audiogram.mp4");
+    const data = await uploadVideoToCloudinary(outputLocation);
 
     res.status(200).json({data});
   } catch (error) {
