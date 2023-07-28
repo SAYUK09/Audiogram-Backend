@@ -7,12 +7,13 @@ async function renderRemotionVideo(
   inputProps,
   outputLocation,
   height,
-  width,
-  webpackOverride
+  width
 ) {
-  const entry = path.resolve("../Audiogram/remotion/index.tsx");
   console.log("Creating a Webpack bundle of the video");
-  const bundleLocation = await bundle(entry, webpackOverride);
+  const bundleLocation = await bundle({
+    entryPoint: path.resolve("../Audiogram/remotion/index.tsx"),
+    webpackOverride: (config) => config,
+  });
 
   const comps = await getCompositions(bundleLocation, {
     inputProps,
