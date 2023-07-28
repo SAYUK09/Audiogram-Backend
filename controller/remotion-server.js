@@ -1,14 +1,16 @@
-const {bundle} = require("@remotion/bundler");
-const {getCompositions, renderMedia} = require("@remotion/renderer");
+const { bundle } = require("@remotion/bundler");
+const { getCompositions, renderMedia } = require("@remotion/renderer");
 const path = require("path");
 
 async function renderRemotionVideo(
   compositionId,
   inputProps,
   outputLocation,
+  height,
+  width,
   webpackOverride
 ) {
-  const entry = path.resolve(__dirname, "../../audiogram/remotion/index.tsx");
+  const entry = path.resolve("../Audiogram/remotion/index.tsx");
   console.log("Creating a Webpack bundle of the video");
   const bundleLocation = await bundle(entry, webpackOverride);
 
@@ -24,7 +26,7 @@ async function renderRemotionVideo(
 
   console.log("Attempting to render:", outputLocation);
   await renderMedia({
-    composition,
+    composition: { ...composition, height, width },
     serveUrl: bundleLocation,
     codec: "h264",
     outputLocation,
