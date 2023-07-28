@@ -19,6 +19,7 @@ app.post("/render-video", async (req, res) => {
   const outputLocation = `./out/${req.body.fileName}.mp4`;
   const height = req.body.height;
   const width = req.body.width;
+  const duration = req.body.duration;
 
   try {
     await renderRemotionVideo(
@@ -26,7 +27,8 @@ app.post("/render-video", async (req, res) => {
       inputProps,
       outputLocation,
       height,
-      width
+      width,
+      duration
     );
 
     const data = await uploadVideoToCloudinary(outputLocation);

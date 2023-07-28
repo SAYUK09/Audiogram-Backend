@@ -7,7 +7,8 @@ async function renderRemotionVideo(
   inputProps,
   outputLocation,
   height,
-  width
+  width,
+  duration
 ) {
   console.log("Creating a Webpack bundle of the video");
   const bundleLocation = await bundle({
@@ -27,7 +28,7 @@ async function renderRemotionVideo(
 
   console.log("Attempting to render:", outputLocation);
   await renderMedia({
-    composition: { ...composition, height, width },
+    composition: { ...composition, height, width, durationInFrames: duration },
     serveUrl: bundleLocation,
     codec: "h264",
     outputLocation,
