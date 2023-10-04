@@ -10,8 +10,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@remotion/bundler": "^3.3.87",
-    "@remotion/renderer": "^3.3.87",
+    "@remotion/bundler": "^4.0.38",
+    "@remotion/renderer": "^4.0.38",
     "cloudinary": "^1.37.0",
     "cors": "^2.8.5",
     "dotenv": "^16.1.4",
