@@ -10,10 +10,12 @@ app.use(bodyParser.json());
 app.use(cors());
 
 app.get("/", async (req, res) => {
+  console.log("Hiting /");
   res.send("I am On!");
 });
 
 app.post("/render-video", async (req, res) => {
+  console.log("hiting /render-video");
   const { inputProps } = req.body;
   const compositionId = "Audiogram";
   const outputLocation = `./out/${req.body.fileName}.mp4`;

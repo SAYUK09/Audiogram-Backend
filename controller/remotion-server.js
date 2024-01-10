@@ -2,11 +2,11 @@ const { bundle } = require("@remotion/bundler");
 const { getCompositions, renderMedia } = require("@remotion/renderer");
 const path = require("path");
 
-let bundleLocation;
+let bundleLocation; // Store bundle location for reuse
 
 async function createBundleIfNeeded() {
   if (!bundleLocation) {
-    console.log("Didn't find, Creating a Webpack bundle of the video");
+    console.log("Creating a Webpack bundle of the video");
     bundleLocation = await bundle({
       entryPoint: path.resolve("../Audiogram/remotion/index.tsx"),
       outDir: path.resolve("../Audiogram-Backend/remotion_bundler"),
@@ -24,9 +24,7 @@ async function renderRemotionVideo(
   width,
   duration
 ) {
-  console.log(bundleLocation, "Pre");
-
-  bundleLocation.length && createBundleIfNeeded();
+  await createBundleIfNeeded();
 
   const comps = await getCompositions(bundleLocation, {
     inputProps,
