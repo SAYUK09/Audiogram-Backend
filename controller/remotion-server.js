@@ -39,7 +39,7 @@ async function renderRemotionVideo(
   console.log("Attempting to render:", outputLocation);
   await renderMedia({
     composition: { ...composition, height, width, durationInFrames: duration },
-    serveUrl: bundleLocation,
+    serveUrl: path.join(process.cwd(), "remotion_bundler"),
     codec: "h264",
     outputLocation,
     inputProps,
