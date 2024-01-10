@@ -26,6 +26,8 @@ async function renderRemotionVideo(
 ) {
   console.log(bundleLocation, "Pre");
 
+  bundleLocation.length && createBundleIfNeeded();
+
   const comps = await getCompositions(bundleLocation, {
     inputProps,
   });
