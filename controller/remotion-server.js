@@ -12,7 +12,11 @@ async function createBundleIfNeeded() {
       outDir: path.resolve("../Audiogram-Backend/remotion_bundler"),
       webpackOverride: (config) => config,
     });
-    console.log(bundleLocation, "bundle location");
+    console.log(
+      bundleLocation,
+      "bundle location",
+      path.join(process.cwd(), "remotion_bundler")
+    );
   }
 }
 
@@ -26,7 +30,9 @@ async function renderRemotionVideo(
 ) {
   // await createBundleIfNeeded();
 
-  const comps = await getCompositions(bundleLocation, {
+  console.log(bundle);
+
+  const comps = await getCompositions(process.env.bundleLocation, {
     inputProps,
   });
 
@@ -39,10 +45,11 @@ async function renderRemotionVideo(
   console.log("Attempting to render:", outputLocation);
   await renderMedia({
     composition: { ...composition, height, width, durationInFrames: duration },
-    serveUrl: path.join(process.cwd(), "remotion_bundler"),
+    serveUrl: process.env.bundleLocation,
     codec: "h264",
     outputLocation,
     inputProps,
+    logLevel: "verbose",
   });
 
   console.log("Render done!");
