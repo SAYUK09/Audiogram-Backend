@@ -30,9 +30,7 @@ async function renderRemotionVideo(
 ) {
   // await createBundleIfNeeded();
 
-  console.log(bundle);
-
-  const comps = await getCompositions(process.env.bundleLocation, {
+  const comps = await getCompositions("https://aaaamazon.netlify.app", {
     inputProps,
   });
 
@@ -45,7 +43,7 @@ async function renderRemotionVideo(
   console.log("Attempting to render:", outputLocation);
   await renderMedia({
     composition: { ...composition, height, width, durationInFrames: duration },
-    serveUrl: process.env.bundleLocation,
+    serveUrl: "https://aaaamazon.netlify.app",
     codec: "h264",
     outputLocation,
     inputProps,
