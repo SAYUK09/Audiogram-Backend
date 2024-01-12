@@ -1,5 +1,9 @@
 const { bundle } = require("@remotion/bundler");
-const { getCompositions, renderMedia } = require("@remotion/renderer");
+const {
+  getCompositions,
+  renderMedia,
+  selectComposition,
+} = require("@remotion/renderer");
 const path = require("path");
 
 let bundleLocation; // Store bundle location for reuse
@@ -30,12 +34,19 @@ async function renderRemotionVideo(
 ) {
   // await createBundleIfNeeded();
 
-  const comps = await getCompositions("https://aaaamazon.netlify.app", {
+  // const comps = await getCompositions("https://aaaamazon.netlify.app", {
+  //   inputProps,
+  // });
+
+  // const composition = comps.find((c) => c.id === compositionId);
+  // console.log(compositionId);
+
+  const composition = await selectComposition({
+    serveUrl: "https://aaaamazon.netlify.app",
+    id: compositionId,
     inputProps,
   });
 
-  const composition = comps.find((c) => c.id === compositionId);
-  console.log(compositionId);
   if (!composition) {
     throw new Error(`No composition with the ID ${compositionId} found`);
   }
