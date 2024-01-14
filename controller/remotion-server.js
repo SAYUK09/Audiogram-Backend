@@ -7,7 +7,6 @@ const {
 const path = require("path");
 
 let bundleLocation; // Store bundle location for reuse
-AudioParam.prototype.cancelAndHoldAtTime = false;
 
 async function createBundleIfNeeded() {
   if (!bundleLocation) {
