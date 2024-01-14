@@ -7,6 +7,7 @@ const {
 const path = require("path");
 
 let bundleLocation; // Store bundle location for reuse
+AudioParam.prototype.cancelAndHoldAtTime = false;
 
 async function createBundleIfNeeded() {
   if (!bundleLocation) {
@@ -42,7 +43,7 @@ async function renderRemotionVideo(
   // console.log(compositionId);
 
   const composition = await selectComposition({
-    serveUrl: "https://aaaamazon.netlify.app",
+    serveUrl: process.env.bundleLocation,
     id: compositionId,
     inputProps,
   });
@@ -54,7 +55,7 @@ async function renderRemotionVideo(
   console.log("Attempting to render:", outputLocation);
   await renderMedia({
     composition: { ...composition, height, width, durationInFrames: duration },
-    serveUrl: "https://aaaamazon.netlify.app",
+    serveUrl: process.env.bundleLocation,
     codec: "h264",
     outputLocation,
     inputProps,
