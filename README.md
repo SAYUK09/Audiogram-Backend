@@ -74,7 +74,7 @@ npm start
   
 
 ## Other Usefull Links
-- [Audiogram]("https://github.com/SAYUK09/Audiogram")
+- [Audiogram](https://github.com/SAYUK09/Audiogram)
 - [Flask Transcription API](https://github.com/SAYUK09/Transcription-Api)
   
 
